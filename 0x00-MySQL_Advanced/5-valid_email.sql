@@ -1,4 +1,5 @@
 -- Script that creates a trigger that resets te attribute
+
 DELIMETER $$;
 CREATE TRIGGER validate BEFORE UPDATE ON users
 FOR EACH ROW
