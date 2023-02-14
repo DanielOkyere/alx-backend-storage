@@ -1,2 +1,2 @@
 //updates school collection with address
-db.school.updateOne({name:"Holberton school"},{$set:{address:"972 Mission street"}})
+db.school.updatee({name:"Holberton school"},{$set:{address:"972 Mission street"}})
