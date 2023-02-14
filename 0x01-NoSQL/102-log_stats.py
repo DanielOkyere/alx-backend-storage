@@ -16,7 +16,7 @@ if __name__ == "__main__":
     print("{} status check".format(log_collection.count_documents({
         "path": "/status"
     })))
-    print("IPS:")
+    print("IPs:")
     IPS = list(log_collection.aggregate([
         {
             '$group': {
