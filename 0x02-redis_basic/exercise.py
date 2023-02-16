@@ -27,9 +27,7 @@ class Cache:
             ->  Union[str, bytes, int, float, None]:
         """ Fetch data from redis cache """
         data = self._redis.get(key)
-        if data is not None and fn is not None and Callable(fn):
-            return fn(data)
-        return data
+        return data if not fn else fn(data)
 
     def get_str(self, key: str) -> str:
         """
