@@ -20,8 +20,7 @@ def replay(func: Callable) -> None:
     for k, v in zip(inp, outp):
         print("{}(*{}) -> {}".format(key,
                                      k.decode('utf-8'),
-                                     v.decode('utf-8')
-                                    ))
+                                     v.decode('utf-8')))
 
 
 def call_history(method: Callable) -> Callable:
