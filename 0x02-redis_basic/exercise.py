@@ -6,6 +6,21 @@ from uuid import uuid4
 from functools import wraps
 
 
+def call_history(method: Callable) -> Callable:
+    """ decorator to store history of inputs and outputs of a particular
+    function"""
+    @wraps(method)
+    def call_history_wr(self, *args, **kwargs):
+        """ definition of callhistory wrapper"""
+        key = method.__qualname__
+        inp_m = key + ":inputs"
+        outp_m = key + ":outputs"
+        self._redis.rpush(inp_m, str(args))
+        fin = method(self, *args, **kwargs)
+        self._redis.rpush(outp_m, str(fin))
+        return fin
+    return call_history_wr
+
 def count_calls(method: Callable) -> Callable:
     """ decorator to wrap count """
     @wraps(method)
@@ -25,6 +40,7 @@ class Cache:
         self._redis.flushdb()
 
     @count_calls
+    @call_history
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """ Stores data in redis chache
         Args:
