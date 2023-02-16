@@ -37,7 +37,7 @@ class Cache:
         return k
 
     def get(self, key: str, fn: Optional[Callable] = None)\
-            ->  Union[str, bytes, int, float, None]:
+            -> Union[str, bytes, int, float, None]:
         """ Fetch data from redis cache """
         data = self._redis.get(key)
         return data if not fn else fn(data)
