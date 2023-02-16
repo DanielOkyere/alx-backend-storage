@@ -21,6 +21,7 @@ def call_history(method: Callable) -> Callable:
         return fin
     return call_history_wr
 
+
 def count_calls(method: Callable) -> Callable:
     """ decorator to wrap count """
     @wraps(method)
