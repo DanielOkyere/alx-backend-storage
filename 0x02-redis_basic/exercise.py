@@ -42,7 +42,7 @@ class Cache:
         d = self.get(key, lambda x: x.decode('utf-8'))
         return d
 
-    def get_int(self, key: str) -> int:
+    def get_int(self, key: str) -> Union[str, bytes, int, float]:
         """
         Get data as integer from redis
         Args:
@@ -50,4 +50,4 @@ class Cache:
         Returns:
             int: data
         """
-        data = self
+        return self.get(key, int)
